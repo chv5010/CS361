@@ -2,7 +2,7 @@ let word = "KITTEN"
 let wordScramble = "ITTNEK"
 let wordLength = word.length
 let currentLocation = 0
-let test1 = 1
+
 console.log(wordLength)
 console.log(word)
 
