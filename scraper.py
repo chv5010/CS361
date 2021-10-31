@@ -2,9 +2,15 @@ import requests
 import re
 from bs4 import BeautifulSoup as soup
 import json
+from flask import Flask
 
-target = 'Texas'
+app = Flask(__name__)
 
+@app.route('/')
+def home():
+    return "To use, add '/target' after the above url. For example '/Blue_Russian' will scrape the Blue_Russian wikipage"
+
+@app.route("/<target>")
 def wikiScraper(target):
     targetPage = requests.get("https://en.wikipedia.org/wiki/"+target)
     print("Target Article: ","https://en.wikipedia.org/wiki/"+target)
@@ -39,8 +45,8 @@ def wikiScraper(target):
 
     # print(headers)
     # print(text)
-    print("Sections Length: ", len(headers))
-    print("Text Length: ", len(text))
+    # print("Sections Length: ", len(headers))
+    # print("Text Length: ", len(text))
 
     # # Build JSON Object
     jsonText = {}
@@ -49,7 +55,11 @@ def wikiScraper(target):
         jsonText[headers[x]] = text[x]
 
     jsonData = json.dumps(jsonText)
-    print(jsonData)
-    return jsonData
+    # print(jsonData)
 
-wikiScraper(target)
+    response = app.response_class(data=jsonData, status=200, mimetype="application/json")
+    print(response.data)
+    return response
+
+if __name__ == "__main__":
+    app.run()
