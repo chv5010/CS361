@@ -5,7 +5,7 @@ let currentLocation = 0
 
 console.log(wordLength)
 console.log(word)
-//comment
+
 const instructionButton = document.querySelector('#instructionButton')
 if (instructionButton != null) {
     instructionButton.onclick = instructions;
