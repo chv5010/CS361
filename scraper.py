@@ -5,7 +5,7 @@ import json
 from flask import Flask
 
 app = Flask(__name__)
-// comment
+
 @app.route('/')
 def home():
     return "To use, add '/target' after the above url. For example '/Blue_Russian' will scrape the Blue_Russian wikipage"
