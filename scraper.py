@@ -43,11 +43,6 @@ def wikiScraper(target):
                 textBuilder += filtertext
         text.append(textBuilder)
 
-    # print(headers)
-    # print(text)
-    # print("Sections Length: ", len(headers))
-    # print("Text Length: ", len(text))
-
     # # Build JSON Object
     jsonText = {}
 
@@ -55,7 +50,6 @@ def wikiScraper(target):
         jsonText[headers[x]] = text[x]
 
     jsonData = json.dumps(jsonText)
-    # print(jsonData)
 
     response = app.response_class(data=jsonData, status=200, mimetype="application/json")
     print(response.data)
